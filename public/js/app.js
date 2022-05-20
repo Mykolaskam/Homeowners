@@ -23680,14 +23680,48 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Dashboard',
+  props: {
+    homeowners: {
+      "default": [{
+        "title": "Mr",
+        "initial": "J",
+        "first_name": "John",
+        "last_name": "Smith"
+      }, {
+        "title": "Mr",
+        "initial": null,
+        "first_name": null,
+        "last_name": "Smith"
+      }],
+      type: Array
+    }
+  },
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
+    var props = __props;
+    var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)({
+      file: null
+    });
+
+    var handleFile = function handleFile(e) {
+      form.file = e.target.files[0];
+      form.post('/', {
+        preserveScroll: true,
+        onSuccess: function onSuccess() {}
+      });
+    };
+
     var __returned__ = {
+      props: props,
+      form: form,
+      handleFile: handleFile,
       DefaultLayout: _Layouts_Default_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-      Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Head
+      Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Head,
+      useForm: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -23748,18 +23782,113 @@ var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_2 = {
   "class": "py-12"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+};
+var _hoisted_3 = {
   "class": "max-w-7xl mx-auto sm:px-6 lg:px-8"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+};
+var _hoisted_4 = {
   "class": "bg-white overflow-hidden shadow-sm sm:rounded-lg"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+};
+var _hoisted_5 = {
   "class": "p-6 bg-white border-b border-gray-200"
-}, " Welcome! ")])])], -1
+};
+var _hoisted_6 = {
+  "class": "px-4 sm:px-6 lg:px-8"
+};
+var _hoisted_7 = {
+  "class": "sm:flex sm:items-center"
+};
+
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "sm:flex-auto"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+  "class": "text-xl font-semibold text-gray-900"
+}, "Homeowners"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "mt-2 text-sm text-gray-700"
+}, "Just a list of homeowners, feel free to import some ¯\\_(ツ)_/¯")], -1
 /* HOISTED */
 );
 
+var _hoisted_9 = {
+  "class": "mt-4 sm:mt-0 sm:ml-16 sm:flex-none"
+};
+var _hoisted_10 = {
+  "for": "upload-file",
+  "class": "cursor-pointer inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+};
+
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Import CSV ");
+
+var _hoisted_12 = {
+  "class": "mt-8 flex flex-col"
+};
+var _hoisted_13 = {
+  "class": "-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8"
+};
+var _hoisted_14 = {
+  "class": "inline-block min-w-full py-2 align-middle md:px-6 lg:px-8"
+};
+var _hoisted_15 = {
+  "class": "overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg"
+};
+var _hoisted_16 = {
+  key: 0,
+  "class": "min-w-full divide-y divide-gray-300"
+};
+
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", {
+  "class": "bg-gray-50"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-900"
+}, " Title "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-900"
+}, " Initial "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-900"
+}, "First Name "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-900"
+}, "Last Name ")])], -1
+/* HOISTED */
+);
+
+var _hoisted_18 = {
+  "class": "divide-y divide-gray-200 bg-white"
+};
+var _hoisted_19 = {
+  "class": "whitespace-nowrap px-3 py-4 text-sm text-gray-500"
+};
+var _hoisted_20 = {
+  "class": "whitespace-nowrap px-3 py-4 text-sm text-gray-500"
+};
+var _hoisted_21 = {
+  "class": "whitespace-nowrap px-3 py-4 text-sm text-gray-500"
+};
+var _hoisted_22 = {
+  "class": "whitespace-nowrap px-3 py-4 text-sm text-gray-500"
+};
+var _hoisted_23 = {
+  key: 1,
+  "class": "text-center py-12"
+};
+
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+  "class": "mt-2 text-md font-semibold text-gray-900"
+}, "No homeowners to show", -1
+/* HOISTED */
+);
+
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "mt-1 text-sm text-gray-500"
+}, "Get started by importing a CSV file.", -1
+/* HOISTED */
+);
+
+var _hoisted_26 = [_hoisted_24, _hoisted_25];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], {
     title: "Dashboard"
@@ -23768,7 +23897,36 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [_hoisted_1];
     }),
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_2];
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        type: "file",
+        id: "upload-file",
+        accept: ".csv",
+        hidden: "",
+        onInput: _cache[0] || (_cache[0] = function ($event) {
+          return $setup.handleFile($event);
+        })
+      }, null, 32
+      /* HYDRATE_EVENTS */
+      )])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [$props.homeowners.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("table", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", _hoisted_18, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.homeowners, function (homeowher, homeowner_index) {
+        var _homeowher$title, _homeowher$initial, _homeowher$first_name, _homeowher$last_name;
+
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
+          key: homeowher.email,
+          "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(homeowner_index % 2 === 0 ? undefined : 'bg-gray-50')
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_homeowher$title = homeowher.title) !== null && _homeowher$title !== void 0 ? _homeowher$title : '-'), 1
+        /* TEXT */
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_homeowher$initial = homeowher.initial) !== null && _homeowher$initial !== void 0 ? _homeowher$initial : '-'), 1
+        /* TEXT */
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_homeowher$first_name = homeowher.first_name) !== null && _homeowher$first_name !== void 0 ? _homeowher$first_name : '-'), 1
+        /* TEXT */
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_homeowher$last_name = homeowher.last_name) !== null && _homeowher$last_name !== void 0 ? _homeowher$last_name : '-'), 1
+        /* TEXT */
+        )], 2
+        /* CLASS */
+        );
+      }), 128
+      /* KEYED_FRAGMENT */
+      ))])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_23, _hoisted_26))])])])])])])])])])];
     }),
     _: 1
     /* STABLE */
