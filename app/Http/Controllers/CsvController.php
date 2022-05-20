@@ -5,16 +5,17 @@ namespace App\Http\Controllers;
 use App\Actions\Csv\ProcessCsvFileAction;
 use App\Http\Requests\Csv\CsvRequest;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class CsvController extends Controller
 {
-    public function __invoke(CsvRequest $request, ProcessCsvFileAction $processCsvFileAction)
+    public function __invoke(CsvRequest $request, ProcessCsvFileAction $processCsvFileAction): Response
     {
         // Pass in validated CSV file into the action
-        $response = $processCsvFileAction($request->validated()['file']->path());
+        $homeowners = $processCsvFileAction($request->validated()['file']->path());
 
-//        dd($response);
-
-        return Inertia::render('Dashboard');
+        return Inertia::render('Dashboard', [
+            "homeowners" => $homeowners
+        ]);
     }
 }

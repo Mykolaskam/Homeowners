@@ -5,20 +5,7 @@ import {useForm} from '@inertiajs/inertia-vue3'
 
 const props = defineProps({
     homeowners: {
-        default: [
-            {
-                "title": "Mr",
-                "initial": "J",
-                "first_name": "John",
-                "last_name": "Smith"
-            },
-            {
-                "title": "Mr",
-                "initial": null,
-                "first_name": null,
-                "last_name": "Smith"
-            },
-        ],
+        default: [],
         type: Array
     }
 })
@@ -32,7 +19,8 @@ const handleFile = (e) => {
 
     form.post('/', {
         preserveScroll: true,
-        onSuccess: () => {},
+        onSuccess: () => {
+        },
     })
 }
 </script>
@@ -78,25 +66,25 @@ const handleFile = (e) => {
                                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-900">
                                                         Initial
                                                     </th>
-                                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-900">First
-                                                        Name
+                                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-900">
+                                                        First Name
                                                     </th>
-                                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-900">Last
-                                                        Name
+                                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold uppercase text-gray-900">
+                                                        Last Name
                                                     </th>
                                                 </tr>
                                                 </thead>
                                                 <tbody class="divide-y divide-gray-200 bg-white">
-                                                <tr v-for="(homeowher, homeowner_index) in homeowners" :key="homeowher.email"
+                                                <tr v-for="(homeowner, homeowner_index) in homeowners" :key="homeowner.email"
                                                     :class="homeowner_index % 2 === 0 ? undefined : 'bg-gray-50'">
-                                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ homeowher.title ?? '-' }}</td>
-                                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ homeowher.initial ?? '-' }}</td>
+                                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ homeowner.title ?? '-' }}</td>
+                                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ homeowner.initial ?? '-' }}</td>
                                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{
-                                                            homeowher.first_name ?? '-'
+                                                            homeowner.first_name ?? '-'
                                                         }}
                                                     </td>
                                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{
-                                                            homeowher.last_name ?? '-'
+                                                            homeowner.last_name ?? '-'
                                                         }}
                                                     </td>
                                                 </tr>
