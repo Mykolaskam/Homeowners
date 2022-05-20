@@ -1,5 +1,7 @@
 <script setup>
+import {ref} from 'vue'
 import DefaultLayout from '@/Layouts/Default.vue';
+import Modal from '@/Components/Modal.vue';
 import {Head} from '@inertiajs/inertia-vue3';
 import {useForm} from '@inertiajs/inertia-vue3'
 
@@ -10,22 +12,27 @@ const props = defineProps({
     }
 })
 
+let showModal = ref(false)
 const form = useForm({
     file: null,
 })
 
 const handleFile = (e) => {
     form.file = e.target.files[0]
+    showModal.value = true
 
     form.post('/', {
         preserveScroll: true,
         onSuccess: () => {
+            showModal.value = false
+            form.reset()
         },
     })
 }
 </script>
 
 <template>
+    <Modal :open="showModal"/>
     <Head title="Dashboard"/>
 
     <DefaultLayout>
