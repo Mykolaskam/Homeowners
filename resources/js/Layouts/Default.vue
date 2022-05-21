@@ -1,4 +1,5 @@
 <script setup>
+import Errors from '@/Components/Errors.vue';
 
 </script>
 
@@ -12,6 +13,8 @@
                     <slot name="header" />
                 </div>
             </header>
+
+            <Errors/>
 
             <!-- Page Content -->
             <main>

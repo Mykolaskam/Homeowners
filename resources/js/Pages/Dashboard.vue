@@ -2,28 +2,28 @@
 import {ref} from 'vue'
 import DefaultLayout from '@/Layouts/Default.vue';
 import Modal from '@/Components/Modal.vue';
-import {Head} from '@inertiajs/inertia-vue3';
-import {useForm} from '@inertiajs/inertia-vue3'
+import {Head, useForm} from '@inertiajs/inertia-vue3';
 
 const props = defineProps({
     homeowners: {
         default: [],
         type: Array
-    }
+    },
 })
 
 let showModal = ref(false)
+let csvFile = ref(null)
+
 const form = useForm({
     file: null,
 })
 
-const handleFile = (e) => {
-    form.file = e.target.files[0]
+const handleFileChange = () => {
     showModal.value = true
+    form.file = csvFile.value.files[0]
 
     form.post('/', {
-        preserveScroll: true,
-        onSuccess: () => {
+        onFinish: () => {
             showModal.value = false
             form.reset()
         },
@@ -33,6 +33,7 @@ const handleFile = (e) => {
 
 <template>
     <Modal :open="showModal"/>
+
     <Head title="Dashboard"/>
 
     <DefaultLayout>
@@ -41,7 +42,6 @@ const handleFile = (e) => {
                 Dashboard
             </h2>
         </template>
-
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -54,10 +54,10 @@ const handleFile = (e) => {
                                     <p class="mt-2 text-sm text-gray-700">Just a list of homeowners, feel free to import some ¯\_(ツ)_/¯</p>
                                 </div>
                                 <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                                    <label for="upload-file"
+                                    <label for="csvFile"
                                            class="cursor-pointer inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
                                         Import CSV
-                                        <input type="file" id="upload-file" accept=".csv" hidden @input="handleFile($event)"/>
+                                        <input type="file" id="csvFile" accept=".csv" ref="csvFile" hidden @change="handleFileChange()"/>
                                     </label>
                                 </div>
                             </div>

@@ -2,6 +2,8 @@
 
 namespace App\Actions\Csv;
 
+use App\Homeowner\Homeowner;
+
 class ProcessCsvFileAction
 {
 
@@ -33,18 +35,18 @@ class ProcessCsvFileAction
         foreach ($rows as $rowIndex => $row) {
             // We'll assume that all files will have a header row for this task
             if ($rowIndex !== 0) {
-                // Check if multiple people with "and"
+
+                // Split the row into individual people
                 $people = self::getPeople($row);
 
                 foreach ($people as $person) {
-                    // Checking if person only has a title (data incomplete)
-                    // Looking at the example CSV - this is the only case for "incomplete" data
-                    $incomplete = str_word_count($person) === 1;
 
-                    $title = self::getTitle($person);
-                    $initial = $incomplete ? null : self::getInitial($person);
-                    $firstName = $incomplete ? null : self::getFirstName($person, $initial);
-                    $lastName = $incomplete ? self::getLastName($row) : self::getLastName($person);
+                    $homeowner = new Homeowner($person, $people);
+
+                    $title = $homeowner->getTitle();
+                    $initial = $homeowner->getInitial();
+                    $firstName = $homeowner->getFirstName();
+                    $lastName = $homeowner->getLastName();
 
                     $this->homeowners[] = [
                         "title" => $title,
@@ -57,37 +59,6 @@ class ProcessCsvFileAction
         }
 
         return $this->homeowners;
-    }
-
-    private function getTitle($string)
-    {
-        // There will be more possible titles, but going ahead with the example CSV options
-        preg_match('/(Mr|Mrs|Mister|Dr|Ms|Prof)\b/m', $string, $match);
-
-        return $match[0] ?? null;
-    }
-
-    private function getFirstName($string, $initial): ?string
-    {
-        $array = explode(" ", $string);
-
-        if (count($array) === 3 && $initial === null) {
-            return $array[1];
-        }
-
-        return null;
-    }
-
-    private function getLastName($string): string
-    {
-        $array = explode(" ", $string);
-        return end($array);
-    }
-
-    private function getInitial($string)
-    {
-        preg_match('/([A-Z][.]\s)|[A-Z]\s/m', $string, $match);
-        return $match[0] ?? null;
     }
 
     private function getPeople($string): array
