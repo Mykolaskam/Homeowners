@@ -13,6 +13,16 @@ class Homeowner
         $this->relatedPeople = $people;
     }
 
+    public function getHomeowner(): array
+    {
+        return [
+            "title" => self::getTitle(),
+            "initial" => self::getInitial(),
+            "first_name" => self::getFirstName(),
+            "last_name" => self::getLastName()
+        ];
+    }
+
     public function getTitle(): string|null
     {
         // There will be more possible titles, but going ahead with the example CSV options

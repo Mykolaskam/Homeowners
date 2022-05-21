@@ -40,20 +40,8 @@ class ProcessCsvFileAction
                 $people = self::getPeople($row);
 
                 foreach ($people as $person) {
-
                     $homeowner = new Homeowner($person, $people);
-
-                    $title = $homeowner->getTitle();
-                    $initial = $homeowner->getInitial();
-                    $firstName = $homeowner->getFirstName();
-                    $lastName = $homeowner->getLastName();
-
-                    $this->homeowners[] = [
-                        "title" => $title,
-                        "initial" => $initial,
-                        "first_name" => $firstName,
-                        "last_name" => $lastName
-                    ];
+                    $this->homeowners[] = $homeowner->getHomeowner();
                 }
             }
         }
