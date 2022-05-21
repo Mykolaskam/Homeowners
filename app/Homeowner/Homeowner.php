@@ -2,6 +2,8 @@
 
 namespace App\Homeowner;
 
+use phpDocumentor\Reflection\Types\Boolean;
+
 class Homeowner
 {
     private string $person;
@@ -64,16 +66,12 @@ class Homeowner
         }
     }
 
-    public function isNameHolder(): string|null
+    public function isNameHolder(): bool
     {
-        if (str_word_count($this->person) === 1) {
-            return true;
-        }
-
-        return false;
+        return str_word_count($this->person) === 1;
     }
 
-    public function carriesOwnName(): string|null
+    public function carriesOwnName(): bool
     {
         foreach ($this->relatedPeople as $person) {
             if (str_word_count($person) === 1) {
